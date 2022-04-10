@@ -1,0 +1,128 @@
+struct(k, v interface{}) {
+	Key k
+	Value v
+}
+
+struct(k, v) {
+	Key k
+	Value v
+}
+
+struct {
+	Key @k
+	Value @v
+}
+
+struct(k, v interface{}) {
+	Key k
+	Value v
+} (int, int)
+
+struct(k, v) {
+	Key k
+	Value v
+} (int, int)
+
+struct {
+	Key @k
+	Value @v
+} (int, int)
+
+type Node struct(k, v interface{}) {
+	Key k
+	Value v
+}
+
+type Node struct(k, v) {
+	Key k
+	Value v
+}
+
+type Node struct {
+	Key @k
+	Value @v
+}
+
+///// TODO: METHOD
+
+var x Node(int, int)
+
+x.Key = 123
+x.Value = 456
+
+var y = &Node(int, int){Key: 123, Value: 456}
+
+///
+
+interface(k, v interface{}) {
+	Get(key k) (value v)
+}
+
+interface(k, v) {
+	Get(key k) (value v)
+}
+
+interface {
+	Get(key @k) (value @v)
+}
+
+interface(k, v interface{}) {
+	Get(key k) (value v)
+} (int, int)
+
+interface(k, v) {
+	Get(key k) (value v)
+} (int, int)
+
+interface {
+	Get(key @k) (value @v)
+} (int, int)
+
+type Getter interface(k, v interface{}) {
+	Get(key k) (value v)
+}
+
+type Getter interface(k, v) {
+	Get(key k) (value v)
+}
+
+type Getter interface {
+	Get(key @k) (value @v)
+}
+
+var x Getter(int, int)
+
+x.Get(123)
+
+var y = z.(Getter(int, int))
+
+y.Get(456)
+
+///
+
+func(k, v interface{}) (g Getter(k, v), key k) (value v)
+
+func(k, v) (g Getter(k, v), key k) (value v)
+
+func(g Getter(@k, @v), key @k) (value @v)
+func(g Getter($k, $v), key $k) (value $v)
+
+func(k, v interface{}) (g Getter(k, v), key k) (value v) {...} (int, int)
+
+func(k, v) (g Getter(k, v), key k) (value v) {...} (int, int)
+
+func(g Getter(@k, @v), key @k) (value @v) {...} (int, int)
+
+type Getterer func(k, v interface{}) (g Getter(k, v), key k) (value v)
+
+type Getterer func(k, v) (g Getter(k, v), key k) (value v)
+
+type Getterer func(g Getter(@k, @v), key @k) (value @v)
+
+var x Getterer(int, int)
+
+x(123, 456)
+
+var y = Getterer(int, int)(z)
+
+y(123, 456)

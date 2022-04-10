@@ -1,0 +1,28 @@
+If type Vector(T) defined a method Read(b []T) (int, error), it was unclear how the generic Read implementation specialized to byte would necessarily be compatible in calling convention with io.Reader.
+
+The need to pass an instance of the value type to hashmap.New is a symptom of a deeper problem. This proposal is trying to treat generic types like interface types, but interface types have a simple common representation and generic types do not. Value representations should probably be expressed in the type system, not inferred at run time.
+
+https://go.googlesource.com/proposal/+/master/design/15292/2010-06-type-functions.md
+
+type Hashmap(keytype, valtype) struct {
+        hashfn Hashfn(keytype)
+        eqfn Eqtype(keytype)
+        buckets []bucket(keytype, valtype)
+        entries int
+}
+
+func New(hashfn Hashfn(keytype type), eqfn Eqfn(keytype),
+         _ valtype type) *Hashmap(keytype, valtype) {
+        return &Hashmap(k, v){hashfn, eqfn,
+                make([]bucket(keytype, valtype), 16),
+                0}
+}
+
+http://hackage.haskell.org/package/base-4.3.0.0/docs/Data-HashTable.html
+
+new
+  :: (key -> key -> Bool)    -- ^ @eq@: An equality comparison on keys
+  -> (key -> Int32)          -- ^ @hash@: A hash function on keys
+  -> IO (HashTable key val)  -- ^ Returns: an empty hash table
+  
+  abstract/abstraction, template, general, forall, universe/universality

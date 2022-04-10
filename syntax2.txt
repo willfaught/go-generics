@@ -1,0 +1,189 @@
+newline indent {
+newline dedent }
+newline samedent ;
+
+a b c
+ b
+ c
+
+{(a b c);
+ b;
+ c;}
+ 
+package m
+ 
+import "net/html"
+ 
+type !User struct
+	name String
+	age Int
+	city String
+	locale struct
+		language string
+		region string
+
+func f
+	return 42
+
+f ()
+
+func f (x) Int
+	return x
+
+func map f xs
+	ys = newSlice(0, xs.len())
+
+foo
+foo.bar
+
+func (x, y, z Int) Int = x + y + z
+
+foo()
+bar()
+x = y * baz
+
+if EXP then EXP
+
+func map f xs
+	[]
+
+[32]int{}
+[int]{1, 2}
+[int:int]{1: 2}
+[]int
+
+func foo
+	var x = 0
+	var bar = Something 1 2 3
+
+def double(x)
+	x * 2
+end
+
+func double x
+	x * 2
+
+type Maybe enum a
+	case Just a
+	case Nothing
+
+type Employee enum
+	case Manager
+		name String
+		age Int
+	case Underling
+		name String
+		age Int
+		manager Employee
+
+type Employee enum {
+	Manager struct {
+		name string
+		age int
+	}
+	
+	Underlying struct {
+		manager *Employee
+		zip int
+	}
+}
+
+
+
+func x y -> x + y
+
+func foo int int { return 0 }
+
+func foo int int { return 0 }
+
+type S struct {
+	Xs ...int
+}
+
+type C struct(K, V) {
+	key K
+	value V
+}
+
+var c C[T] = C[T](x)
+
+func foo (x, y, z int) (a, b, c int) {
+	w := foo(1, 2, 3)
+	r, s, t := foo(4, 5, 6)
+	(w (int, int, int)) := foo(1, 2, 3)
+	var w (int, int, int) = foo(1, 2, 3)
+	var w (x, y, z, int) = foo(1, 2, 3)
+	w.x = y + z
+	var (x, y, z, int) = foo(1, 2, 3)
+	(x, y, z int){1, 2, 3}
+	(x, y, z int){x: 1, y: 2, z: 3}
+	Tuple3{1, 2, 3}
+	(1, 2, 3)
+	x := t{'r', "s", 1, 2, 3, 4, 5}
+	struct{x, y int} _ := bar()
+	switch b := bar(); b {
+	case struct{}:
+	case struct{x: x, y: y}: z(x, y)
+	case struct{x: 12, y: 13}: z(12, 13)
+	case (x, y, z int): return 0
+	}
+	var (x, y, z) = f()
+	var (x, y, z int) = f()
+	var struct{x, y int} = f()
+	var Foo{X, Y} = f()
+	var Foo{X: X, Y: Y} = f()
+	type Foo enum {
+		Bar struct{X, Y int}
+		Baz struct{A, B, C string}
+		Boz []int
+	}
+	switch f := Foo.Bar{1, 2}; f {
+	case Foo.Bar{X: 1, Y: 2}: g(3, 4)
+	case Foo.Bar{X: x, Y: y}: g(x, y)
+	case Foo.Baz{A: a, B: b, C: c}: g(a, b, c)
+	case Foo.Boz{0: x, 1: y, 2: z}: g(x, y, z)
+	case Foo{X: Bar{Y: Baz{Boz: 42}}}: g(42)
+	}
+	switch m {
+	case nil: z()
+	case {}: z()
+	case {1: x}: z(x)
+	}
+	switch c {
+	case nil: z()
+	case {}: z()
+	}
+	switch s {
+	case "": z()
+	case "a": z()
+	}
+	switch s {
+	case nil: z()
+	case {0: x, 1: y}: z(x, y)
+	}
+	switch p {
+	case nil: z()
+	case {}: z()
+	}
+	switch t {
+	case (x, y, z): a()
+	}
+	func F (f Foo{X: x, Y: y}) (Bar{A: a, B: b}) {
+		a = x
+		b = y
+	}
+	var l List int
+	f = func(c chan int, d <-chan string) {}
+	var c chan int
+	var c chan[int]
+	var m map[int, int]
+	var m map(int, int)
+	var m M[int, int, int]
+	var a [32]int
+	var x int?
+	x = y
+	switch y {
+	case x:
+	}
+	
+}
