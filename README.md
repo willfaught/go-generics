@@ -497,6 +497,8 @@ var _ MyInt = Add(MyInt{1}, MyInt{2})
 var _ MyFloat = Add(MyFloat{1}, MyFloat{2})
 ```
 
+## Generalize and simplify the language
+
 Declare and implement predeclared types and their operations in a core package in the standard library:
 
 ```go
@@ -714,15 +716,16 @@ func cap = core.Cap // Now a full function value
 // ...
 ```
 
-Change operators to be consistent with method semantics:
+Optional: Change order operators to be consistent with method semantics:
 
 ```go
 type B bool
 
 var _ B = 1 < 2 // Invalid now because comparison operations now result in typed booleans
-// I can't think of any other cases. Perhaps there are, perhaps not.
-// Breaking compatibility sucks, but, honestly, how often is this feature used? "go fmt" or "go fix" can easily fix these:
-// var _ B = B(1 < 2)
+
+// Automatically fix existing code with "go fix" or "go fmt":
+
+var _ B = B(1 < 2)
 ```
 
 Change language constructs to use interfaces for user-declared types:
